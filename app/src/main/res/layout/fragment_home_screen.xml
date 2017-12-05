@@ -18,7 +18,7 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="Category name"
         android:textColor="#FFF"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"
