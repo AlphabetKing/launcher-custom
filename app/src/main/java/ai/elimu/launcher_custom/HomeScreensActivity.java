@@ -55,6 +55,8 @@ public class HomeScreensActivity extends AppCompatActivity {
             appCollection = AppCollectionGenerator.loadAppCollectionNorwegian();
         } else if ("so".equals(BuildConfig.FLAVOR)) {
             appCollection = AppCollectionGenerator.loadAppCollectionSomali();
+        } else if ("num".equals(BuildConfig.FLAVOR)) {
+            appCollection = AppCollectionGenerator.loadAppCollectionNumeracy();
         }
         Log.i(getClass().getName(), "appCollection.getAppCategories().size(): " + appCollection.getAppCategories().size());
 
