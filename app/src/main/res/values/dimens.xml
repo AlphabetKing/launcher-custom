@@ -1,5 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <!-- For Lenovo 7"  use horizontal margin 16dp.
+         For Lenovo 10" use horizontal margin 32dp. -->
+    <dimen name="activity_horizontal_margin">32dp</dimen>
     <dimen name="activity_vertical_margin">12dp</dimen>
 </resources>

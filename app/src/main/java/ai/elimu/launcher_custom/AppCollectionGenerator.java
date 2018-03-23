@@ -21,18 +21,18 @@ public class AppCollectionGenerator {
 
         List<AppCategory> appCategories = new ArrayList<>();
 
-
+/*
         // 00 Logic
         AppCategory appCategoryLogic = new AppCategory();
         appCategoryLogic.setName("Logic");
         List<AppGroup> appGroupsLogic = new ArrayList<>();
         appGroupsLogic.add(loadAppGroup(
                 "com.alphabetking.logic.find_colors",
-                //"com.alphabetking.logic.find_shape",
                 "com.thealphabetking.kidsedu.find_shape",
                 "com.alphabetking.logic.find_shadows",
                 "com.alphabetking.logic.find_section",
-                "com.alphabetking.logic.pairs_font_and_back"
+                "com.alphabetking.logic.pairs_font_and_back",
+                "no.leaplearning.logic.mirror_pattern"
         ));
         appGroupsLogic.add(loadAppGroup(
                 "com.alphabetking.logic.pattern",
@@ -47,7 +47,8 @@ public class AppCollectionGenerator {
                 "com.alphabetking.logic.sequence",
                 "com.alphabetking.logic.matrix",
                 "com.alphabetking.logic.match_belong",
-                "com.alphabetking.logic.whatfits"
+                "com.alphabetking.logic.whatfits",
+                "com.alphabetking.logic.find_3d_shapes"                             //MISSING for 7"
         ));
         appGroupsLogic.add(loadAppGroup(
                 "com.alphabetking.logic.puzzle_image",
@@ -175,9 +176,9 @@ public class AppCollectionGenerator {
         appCategoryWriting.setName("Writing");
         List<AppGroup> appGroupsWriting = new ArrayList<>();
         appGroupsWriting.add(loadAppGroup(
-                "com.alphabetking.drawing_line",
+                "com.alphabetking.literacy.drawing_line",
                 "com.alphabetking.literacy.how_to_write",
-                "com.alphabetking.literacy.trace",
+                "com.alphabetking.literacy.trace",                             //MISSING for 7"
                 "com.alphabetking.literacy.write"
         ));
         appCategoryWriting.setAppGroups(appGroupsWriting);
@@ -198,7 +199,7 @@ public class AppCollectionGenerator {
                 "com.alphabetking.literacy.spelling2",
                 "com.alphabetking.literacy.sentence_spell",
                 "com.alphabetking.literacy.spelling_vowels",
-                "com.alphabetking.literacy.split_the_word"
+                "com.alphabetking.literacy.split_the_word"                          //MISSING for 7"
         ));
         appGroupsBlending.add(loadAppGroup(
                 "com.alphabetking.literacy.puzzle_small_words",
@@ -294,7 +295,7 @@ public class AppCollectionGenerator {
         ));
         appCategorySentences.setAppGroups(appGroupsSentences);
         appCategories.add(appCategorySentences);
-
+*/
 
         // 08 Reading stories
         AppCategory appCategoryReadingStories = new AppCategory();
@@ -320,6 +321,7 @@ public class AppCollectionGenerator {
         appCategoryReadingStories.setAppGroups(appGroupsReadingStories);
         appCategories.add(appCategoryReadingStories);
 
+/*
 // 09 Numeracy
         AppCategory appCategoryNumeracy = new AppCategory();
         appCategoryNumeracy.setName("Numeracy");
@@ -386,7 +388,400 @@ public class AppCollectionGenerator {
 
         appCategoryNumeracy.setAppGroups(appGroupsNumeracy);
         appCategories.add(appCategoryNumeracy);
+*/
+/*
+        // Test app
+        AppCategory appCategoryTest = new AppCategory();
+        appCategoryTest.setName("Test app");
+        List<AppGroup> appGroupsTest = new ArrayList<>();
 
+        appGroupsTest.add(loadAppGroup(
+                "com.gmail.programmersimeon.test_app"
+        ));
+        appCategoryTest.setAppGroups(appGroupsTest);
+        appCategories.add(appCategoryTest);
+*/
+
+
+        appCollection.setAppCategories(appCategories);
+
+        return appCollection;
+    }
+
+    // TODO: fetch via Appstore library
+    public static AppCollection loadAppCollectionFrench() {
+        Log.i(AppCollectionGenerator.class.getName(), "loadAppCollectionFrench");
+
+        AppCollection appCollection = new AppCollection();
+
+        List<AppCategory> appCategories = new ArrayList<>();
+
+
+        // 00 Logic
+        AppCategory appCategoryLogic = new AppCategory();
+        appCategoryLogic.setName("Logique");
+        List<AppGroup> appGroupsLogic = new ArrayList<>();
+        appGroupsLogic.add(loadAppGroup(
+                "com.alphabetking.logic.find_colours.fr",          // F
+                "com.alphabetking.logic.find_shapes.fr",                          // F
+                "com.alphabetking.logic.find_shadows.fr",                         // F
+                "com.alphabetking.logic.find_section",
+                "com.alphabetking.logic.pairs_font_and_back"
+        ));
+        appGroupsLogic.add(loadAppGroup(
+                "com.alphabetking.logic.make_pattern.fr",          // F
+                "com.alphabetking.logic.what_shape_fits.fr",                      // F
+                "com.alphabetking.logic.find_pairs",
+                "com.alphabetking.logic.matchpairs.fr",                           // F
+                "com.alphabetking.logic.find_missing_part.fr",                    // F
+                "com.alphabetking.logic.match_missing_part.fr"                    // F
+        ));
+        appGroupsLogic.add(loadAppGroup(
+                "com.alphabetking.logic.match_3_mix.fr",        // F
+                "com.alphabetking.logic.sequence.fr",                          // F
+                "com.alphabetking.logic.matrix.fr",                            // F
+                "com.alphabetking.logic.match_belong",
+                "com.alphabetking.logic.what_fits.fr",                         // F
+                "com.alphabetking.logic.find_3d_shapes"
+        ));
+        appGroupsLogic.add(loadAppGroup(
+                "com.alphabetking.logic.puzzle_image.fr",       // F
+                "com.alphabetking.logic.find_opposite",
+                "com.alphabetking.logic.match_opposite",
+                "com.alphabetking.logic.find_senses",
+                "com.alphabetking.logic.sort_it_out.fr",                       // F
+                "com.alphabetking.logic.time"
+        ));
+        appCategoryLogic.setAppGroups(appGroupsLogic);
+        appCategories.add(appCategoryLogic);
+
+/*
+        // 01 Letter sounds
+        AppCategory appCategoryLetterSounds = new AppCategory();
+        appCategoryLetterSounds.setName("Letter sounds");
+        List<AppGroup> appGroupsLetterSounds = new ArrayList<>();
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.alphabetking.logic.find_rhymes",
+                "com.alphabetking.literacy.match_rhymes",
+                "com.alphabetking.literacy.pairs_rhymes",
+                "com.thealphabetking.kidsedu.memory.rhymes",
+                "com.alphabetking.literacy.syllables1",
+                "com.alphabetking.literacy.syllables2"
+        ));
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.alphabetking.literacy.sort_first_sound",
+                "com.alphabetking.literacy.sort_last_sound",
+                "com.alphabetking.literacy.sort_middle_sound",
+                "com.alphabetking.literacy.sound_small_words",
+                "com.alphabetking.literacy.sounding"
+        ));
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.alphabetking.literacy.first_sound_puzzle",
+                "com.alphabetking.literacy.find_letter",
+                "com.alpahetking.literacy.find_letter_sound",
+                "com.alphabetking.literacy.starting_sound_puzzle",
+                "com.alphabetking.literacy.find_vowels",
+                "com.alphabetking.literacy.sortvowels"
+        ));
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.alphabetking.literacy.remember_sounds",
+                "com.alphabetking.logic.match_blends",
+                "com.alphabetking.literacy.flashcard_blends",
+                "com.alphabetking.literacy.find_letter_name",
+                "com.alphabetking.literacy.music_video",
+                "com.alphabetking.literacy.how_to_say"
+        ));
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.alphabetking.literacy.flashcard",
+                "com.alphabetking.literacy.flashcard_letter_sounds",
+                "com.alphabetking.literacy.starting_sound",
+                "com.alphabetking.literacy.flashcard_vowels",
+                "com.alphabetking.literacy.flashcard_alphabet"
+        ));
+
+        appGroupsLetterSounds.add(loadAppGroup(
+                "com.gmail.programmersimeon.memory_sounds_sounds",
+                "com.thealphabetking.kidsedu.memory.letters_sounds"
+        ));
+        appCategoryLetterSounds.setAppGroups(appGroupsLetterSounds);
+        appCategories.add(appCategoryLetterSounds);
+
+*/
+        // 02 Listening to stories
+        AppCategory appCategoryListeningToStories = new AppCategory();
+        appCategoryListeningToStories.setName("Écouter des histoires");
+        List<AppGroup> appGroupsListeningToStories = new ArrayList<>();
+        appGroupsListeningToStories.add(loadAppGroup(
+                "com.alphabetking.literacy.books_level_a_auto.fr",
+                "com.alphabetking.literacy.books_level_b_auto.fr",
+                "com.alphabetking.literacy.books_level_c_auto.fr",
+                "com.alphabetking.literacy.books_level_d_auto.fr"
+        ));
+        appGroupsListeningToStories.add(loadAppGroup(
+                "com.alphabetking.literacy.mariama_auto.fr",
+                "com.alphabetking.literacy.mariama_and_mousa_auto.fr",
+                "com.alphabetking.literacy.mousa_auto.fr"
+        ));
+        appGroupsListeningToStories.add(loadAppGroup(
+                "com.alphabetking.story.monkeys_auto",
+                "com.alphabetking.story.monkeys_2_auto",
+                "com.alphabetking.story.penguins_auto",
+                "com.alphabetking.story.the_hen_auto",
+                "com.alphabetking.story.story_ak_auto"
+        ));
+        appCategoryListeningToStories.setAppGroups(appGroupsListeningToStories);
+        appCategories.add(appCategoryListeningToStories);
+
+
+        // 03 Letter shapes
+        AppCategory appCategoryLetterShapes = new AppCategory();
+        appCategoryLetterShapes.setName("Letter shapes");
+        List<AppGroup> appGroupsLetterShapes = new ArrayList<>();
+        appGroupsLetterShapes.add(loadAppGroup(
+                "com.alphabetking.literacy.find_letter_in_image,fr",
+                "com.alphabetking.literacy.letters_in_grid.fr",
+                "com.gmail.bvalbo.letters_in_grid",
+                "com.alphabetking.literacy.puzzle_alphabet.fr",
+                "com.alphabetking.literacy.puzzle.fr",
+                "com.alphabetking.literacy.parking_letters.fr"
+        ));
+        appGroupsLetterShapes.add(loadAppGroup(
+                "com.alphabetking.literacy.find_letter_in_text.fr",
+                "com.alphabetking.literacy.paint.fr"
+        ));
+        appGroupsLetterShapes.add(loadAppGroup(
+                "com.alphabetking.literacy.match_small_letters.fr",
+                "com.alphabetking.literacy.match_capital_letters.fr",
+                "com.alphabetking.literacy.match_mixed_letters.fr",
+                "com.alphabetking.literacy.memory_letters.fr"
+                //"com.alphabetking.literacy.match_letters", // BUNDLE app - not to be in launcher
+        ));
+        appGroupsLetterShapes.add(loadAppGroup(
+                "com.alphabetking.literacy.alphabetical_order.fr",
+                "com.alphabetking.literacy.alphabetical_order_two",
+                "com.alphabetking.literacy.alphabetical_order_three",
+                "com.alphabetking.literacy.match_letters_words"
+        ));
+        appCategoryLetterShapes.setAppGroups(appGroupsLetterShapes);
+        appCategories.add(appCategoryLetterShapes);
+
+
+        // 04 Writing
+        AppCategory appCategoryWriting = new AppCategory();
+        appCategoryWriting.setName("Writing");
+        List<AppGroup> appGroupsWriting = new ArrayList<>();
+        appGroupsWriting.add(loadAppGroup(
+                "com.alphabetking.literacy.drawing_line.fr",
+                "no.leaplearning.literacy.how_to_write.fr",
+                "com.alphabetking.literacy.trace",                             //MISSING for 7"
+                "no.leaplearning.literacy.write.fr"
+        ));
+        appCategoryWriting.setAppGroups(appGroupsWriting);
+        appCategories.add(appCategoryWriting);
+
+
+        // 05 Blending
+        AppCategory appCategoryBlending = new AppCategory();
+        appCategoryBlending.setName("Blending");
+        List<AppGroup> appGroupsBlending = new ArrayList<>();
+        appGroupsBlending.add(loadAppGroup(
+                "com.alphabetking.literacy.spelling_first_sound.fr",
+                "com.alphabetking.literacy.spelling_last_sound.fr",
+                "com.alphabetking.literacy.spelling_middle_sound.fr",
+                "com.alphabetking.literacy.spelling_small_words.fr"
+        ));
+        appGroupsBlending.add(loadAppGroup(
+                "com.alphabetking.literacy.spelling_small_words_2.fr",
+                "com.alphabetking.literacy.spelling_sentences.fr",
+                "com.alphabetking.literacy.spelling_vowels.fr",
+                "com.alphabetking.literacy.split_the_word.fr"                          //MISSING for 7"
+        ));
+        appGroupsBlending.add(loadAppGroup(
+                "com.alphabetking.literacy.puzzle_small_words.fr",
+                "com.alphabetking.literacy.puzzle_blends.fr",
+                "com.alphabetking.literacy.find_word_in_line.fr",
+                "com.alphabetking.literacy.grid_small.fr",
+                "com.alphabetking.literacy.grid_huge_word.fr"
+        ));
+        appCategoryBlending.setAppGroups(appGroupsBlending);
+        appCategories.add(appCategoryBlending);
+
+
+        // 06 Words
+        AppCategory appCategoryWords = new AppCategory();
+        appCategoryWords.setName("Mots");
+        List<AppGroup> appGroupsWords = new ArrayList<>();
+        appGroupsWords.add(loadAppGroup(
+                "com.alphabetking.literacy.small_words.fr",
+                "com.alphabetking.literacy.pronouns.fr",
+                "com.alphabetking.literacy.word_puzzle.fr",
+                "com.alphabetking.literacy.grid_sight_words.fr",
+                "com.alphabetking.literacy.fast_reader.fr",
+                "com.alphabetking.literacy.days_and_months.fr"
+        ));
+        appGroupsWords.add(loadAppGroup(
+                "com.alphabetking.literacy.rooms_and_concepts.fr",
+                "com.alphabetking.literacy.words.fr",
+                "com.alphabetking.literacy.body_parts_african.fr",
+                "com.alphabetking.literacy.record_word.fr",
+                "com.alphabetking.literacy.correct_spelling.fr",
+                "com.alphabetking.literacy.nouns_and_verbs.fr"
+        ));
+        appGroupsWords.add(loadAppGroup(
+                "com.alphabetking.literacy.sort_text",
+                "com.alphabetking.literacy.fake_or_real.fr",
+                "com.alphabetking.literacy.parking_words.fr",
+                "com.alphabetking.literacy.opposite.fr",
+                "com.alphabetking.literacy.preposition.fr",
+                "com.alphabetking.literacy.compare_colour.fr"
+        ));
+        appGroupsWords.add(loadAppGroup(
+                "com.alphabetking.literacy.numbers.fr",
+                "com.alphabetking.literacy.plural_nouns.fr",
+                "com.alphabetking.literacy.size.fr"
+        ));
+        appGroupsWords.add(loadAppGroup(
+                "com.alphabetking.literacy.memory_images",
+                "com.alphabetking.literacy.memory_sound_image",
+                "com.gmail.programmersimeon.memory_sound_word",
+                "com.gmail.programmersimeon.memory_word_image",
+                "com.gmail.programmersimeon.memory_word"
+        ));
+        appCategoryWords.setAppGroups(appGroupsWords);
+        appCategories.add(appCategoryWords);
+
+
+        // 07 Sentences
+        AppCategory appCategorySentences = new AppCategory();
+        appCategorySentences.setName("Phrases");
+        List<AppGroup> appGroupsSentences = new ArrayList<>();
+        appGroupsSentences.add(loadAppGroup(
+                "com.alphabetking.literacy.verb_to_be.fr",
+                "com.alphabetking.literacy.verbs.fr",
+                "com.alphabetking.literacy.nouns.fr",
+                "com.alphabetking.literacy.prepositions.fr",
+                "com.alphabetking.literacy.questions.fr",
+                "com.alphabetking.literacy.punctuation.fr"
+        ));
+        appGroupsSentences.add(loadAppGroup(
+                "com.alphabetking.literacy.complete_the_sentence.fr",
+                "com.alphabetking.literacy.match_sentences_1.fr",
+                "com.alphabetking.literacy.match_sentences_2.fr",
+                "com.alphabetking.literacy.match_sentences_3.fr",
+                "com.alphabetking.literacy.match_sentences_4.fr",
+                "com.alphabetking.literacy.colouring_book_2.fr"
+        ));
+        appGroupsSentences.add(loadAppGroup(
+                "com.alphabetking.literacy.rooms_sentences.fr",
+                "com.alphabetking.literacy.record_sentences.fr",
+                "com.alphabetking.literacy.grid_sentences",
+                "com.alphabetking.literacy.reading_comprehension.fr",
+                "com.alphabetking.literacy.sequence_sentences.fr",
+                "com.alphabetking.literacy.sight_word_sentence"
+        ));
+        appGroupsSentences.add(loadAppGroup(
+                "com.alphabetking.literacy.make_sentences_1.fr",
+                "com.alphabetking.literacy.make_sentences_2.fr",
+                "com.alphabetking.literacy.make_sentences_3.fr",
+                "com.alphabetking.literacy.sexual_abuse_complete",
+                "com.alphabetking.literacy.sexual_abuse_mount"
+        ));
+        appCategorySentences.setAppGroups(appGroupsSentences);
+        appCategories.add(appCategorySentences);
+
+
+        // 08 Reading stories
+        AppCategory appCategoryReadingStories = new AppCategory();
+        appCategoryReadingStories.setName("Histoires");
+        List<AppGroup> appGroupsReadingStories = new ArrayList<>();
+        appGroupsReadingStories.add(loadAppGroup(
+                "com.alphabetking.literacy.books_level_a.fr",
+                "com.alphabetking.literacy.books_level_b.fr",
+                "com.alphabetking.literacy.books_level_c.fr",
+                "com.alphabetking.literacy.books_level_d.fr"
+        ));
+        appGroupsReadingStories.add(loadAppGroup(
+                "com.alphabetking.literacy.mariama.fr",
+                "com.alphabetking.literacy.mariama_and_mousa.fr",
+                "com.alphabetking.literacy.mousa.fr"
+        ));
+        appGroupsReadingStories.add(loadAppGroup(
+                "com.alphabetking.story.monkeys",
+                "com.alphabetking.story.monkeys_2",
+                "com.alphabetking.story.penguins",
+                "com.alphabetking.story.the_hen"
+        ));
+        appCategoryReadingStories.setAppGroups(appGroupsReadingStories);
+        appCategories.add(appCategoryReadingStories);
+
+/*
+// 09 Numeracy
+        AppCategory appCategoryNumeracy = new AppCategory();
+        appCategoryNumeracy.setName("Numeracy");
+        List<AppGroup> appGroupsNumeracy = new ArrayList<>();
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.color_squares",
+                "com.alphabetking.logic.mirror_pattern",
+                "com.alphabetking.logic.color_fractions",
+                "com.alphabetking.numeracy.table",
+                "com.alphabetking.numbers.quantity",
+                "com.alphabetking.math.bigger_smaller"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.number.number_in_line",
+                "com.alphabetking.number.find_the_number_missing",
+                "com.alphabetking.number.find_the_number",
+                "com.alphabetking.number.match_numbers",
+                "com.alphabetking.number.sort_numbers"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numbers.stacking",
+                "com.alphabetking.numeracy.find_from_image"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.color_grid",
+                "com.alphabetking.math.family_house",
+                "com.alphabetking.numeracy.split_the_number",
+                "com.alphabetking.math.ten_cross",
+                "com.alphabetking.math.math_room_mix"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.addition",
+                "com.alphabetking.math.sort_addition",
+                "com.alphabetking.math.whats_missing_addition",
+                "com.alphabetking.numeracy.compare_addition",
+                "com.alphabetking.math.sort_plus"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.color_square_addition",
+                "com.alphabetking.math.math_room_addition",
+                "com.alphabetking.math.puzzle_addition",
+                "com.alphabetking.math.matrix_addition"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.subtraction",
+                "com.alphabetking.math.sort_subtraction",
+                "com.alphabetking.math.whats_missing_subtraction",
+                "com.alphabetking.numeracy.compare_substraction"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.math_room_subtraction",
+                "com.alphabetking.math.puzzle_subtraction",
+                "com.alphabetking.math.matrix_subtraction"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.multiplication",
+                "com.alphabetking.math.sort_multiplication",
+                "com.alphabetking.math.whats_missing_multiplication",
+                "com.alphabetking.math.matrix_multiplication"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.math.divison"
+        ));
+
+        appCategoryNumeracy.setAppGroups(appGroupsNumeracy);
+        appCategories.add(appCategoryNumeracy);
+*/
 /*
         // Test app
         AppCategory appCategoryTest = new AppCategory();
@@ -413,42 +808,42 @@ public class AppCollectionGenerator {
         AppCollection appCollection = new AppCollection();
 
         List<AppCategory> appCategories = new ArrayList<>();
-/*
+
         // 00 Logic
         AppCategory appCategoryLogic = new AppCategory();
         appCategoryLogic.setName("Logikk");
         List<AppGroup> appGroupsLogic = new ArrayList<>();
 
         appGroupsLogic.add(loadAppGroup(
-                "com.alphabetking.logic.find_colors",
-                //"com.alphabetking.logic.find_shape",
-                "com.thealphabetking.kidsedu.find_shape",
-                "com.alphabetking.logic.find_shadows",
+                "com.alphabetking.logic.find_colors.no",    // N
+                "com.thealphabetking.logic.find_shape.no",     // N
+                "com.alphabetking.logic.find_shape3d.no",   // N
+                "com.alphabetking.logic.find_shadows.no",   // N
                 "com.alphabetking.logic.find_section",
                 "com.alphabetking.logic.pairs_font_and_back"
         ));
         appGroupsLogic.add(loadAppGroup(
-                "com.alphabetking.logic.pattern",
-                "com.alphabetking.logic.whatshapefits",
-                "com.gmail.bvalbo.NO_Finn___Par",           // N
-                "com.gmail.bvalbo.NO_Match___Par",          // N
-                "com.alphabetking.logic.find_fitting_shape",
-                "com.alphabetking.logic.match_fitting_shape"
+                "com.alphabetking.logic.pattern.no",        // N
+                "com.alphabetking.logic.whatshapefits.no",  // N
+                "com.alphabetking.logic.find_pairs.no",     // N
+                "com.alphabetking.logic.match_pairs.no",    // N
+                "com.alphabetking.logic.find_fitting_shape.no",//N
+                "com.alphabetking.logic.match_fitting_shape.no"//N
         ));
         appGroupsLogic.add(loadAppGroup(
-                "com.alphabetking.logic.match_3_mix",
-                "com.alphabetking.logic.sequence",
-                "com.alphabetking.logic.matrix",
+                "com.alphabetking.logic.match_3_mix.no",    // N
+                "com.alphabetking.logic.sequence.no",       // N
+                "com.alphabetking.logic.matrix.no",         // N
                 "com.alphabetking.logic.match_belong",
-                "com.alphabetking.logic.whatfits"
+                "com.alphabetking.logic.whatfits.no"        // N
         ));
         appGroupsLogic.add(loadAppGroup(
-                "com.alphabetking.logic.puzzle_image",
+                "com.alphabetking.logic.puzzle_image.no",   // N
                 "com.gmail.bvalbo.NO_Finn___Motsatt",       // N
                 "com.gmail.bvalbo.NO_Match___Motsatt",      // N
                 "com.gmail.bvalbo.NO_Finn___Sanser",        // N
                 "com.alphabetking.literacy.sort_it_out",
-                "com.alphabetking.logic.time"
+                "com.alphabetking.logic.time.no"            // N
         ));
         appGroupsLogic.add(loadAppGroup(
                 "com.gmail.programmersimeon.lag_bildekort",
@@ -482,11 +877,11 @@ public class AppCollectionGenerator {
                 "com.gmail.programmersimeon.lag_bildekort"
         ));
 
- *
+*/
         appCategoryLogic.setAppGroups(appGroupsLogic);
         appCategories.add(appCategoryLogic);
-*/
 
+/*
         // 00 ENG Logic
         AppCategory appCategoryLogic = new AppCategory();
         appCategoryLogic.setName("Logic");
@@ -524,6 +919,7 @@ public class AppCollectionGenerator {
         ));
         appCategoryLogic.setAppGroups(appGroupsLogic);
         appCategories.add(appCategoryLogic);
+*/
 
         // 01 Letter sounds
         AppCategory appCategoryLetterSounds = new AppCategory();
@@ -612,7 +1008,6 @@ public class AppCollectionGenerator {
         appCategoryWriting.setName("Skrive");
         List<AppGroup> appGroupsWriting = new ArrayList<>();
         appGroupsWriting.add(loadAppGroup(
-                "com.alphabetking.drawing_line",
                 "com.alphabetking.literacy.drawing_line",
                 "com.alphabetking.literacy.how_to_write",
                 "com.bokstavkongen.barnutd.skrive"
@@ -648,11 +1043,10 @@ public class AppCollectionGenerator {
         appCategoryWords.setName("Ord");
         List<AppGroup> appGroupsWords = new ArrayList<>();
         appGroupsWords.add(loadAppGroup(
-                "com.bokstavkongen.barnutd.smaord",
+                "com.alphabetking.literacy.small_words.no",
                 "com.gmail.bvalbo.NO_Pronomen",
                 "com.bokstavkongen.barnutd.hoyfrekvente_ord",
                 "com.bokstavkongen.barnutd.hurtigleseren"
-
         ));
         appGroupsWords.add(loadAppGroup(
                 "com.bokstavkongen.barnutd.rom",
@@ -718,9 +1112,12 @@ public class AppCollectionGenerator {
                 "com.bokstavkongen.barnutd.finn_tallet",
                 "com.bokstavkongen.barnutd.storre_eller_mindre"
         ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.logic.find_correct_size.no"
+        ));
         appCategoryNumeracy.setAppGroups(appGroupsNumeracy);
         appCategories.add(appCategoryNumeracy);
-*/
+
 
 // 09 Numeracy
         AppCategory appCategoryNumeracy = new AppCategory();
@@ -789,6 +1186,66 @@ public class AppCollectionGenerator {
 
         appCategoryNumeracy.setAppGroups(appGroupsNumeracy);
         appCategories.add(appCategoryNumeracy);
+*/
+
+
+
+        // 09 Numeracy
+        AppCategory appCategoryNumeracy = new AppCategory();
+        appCategoryNumeracy.setName("Matematikk");
+        List<AppGroup> appGroupsNumeracy = new ArrayList<>();
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.colour_squares",
+                "com.alphabetking.numeracy.quantity",
+                "com.alphabetking.number.find_the_number",
+                //"com.alphabetking.number.match_numbers",    // old
+                //"com.alphabetking.numeracy.sort_numbers",    // old
+                "com.alphabetking.numeracy.number_in_line"
+                //"com.alphabetking.number.find_the_number_missing"   //old
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.whats_missing_addition",
+                "com.alphabetking.numeracy.matrix_addition",
+                "com.alphabetking.numeracy.colour_squares_addition",
+                "com.alphabetking.numeracy.rainbow"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.rooms_addition",
+                "com.alphabetking.numeracy.sort_it_plus",
+                "com.alphabetking.numeracy.fast_reader_addition"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.subtraction",
+                "com.alphabetking.numeracy.matrix_subtraction",
+                "com.alphabetking.com.numeracy.rooms_subtraction",
+                "com.alphabetking.numeracy.fast_reader_subtraction"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.multiplication",
+                "com.alphabetking.numeracy.whats_missing_multiplication",
+                "com.alphabetking.numeracy.multiplication_table",
+                "com.alphabetking.numeracy.matrix_multiplication",
+                "com.alphabetking.numeracy.multiplication_numbers",
+                "com.alphabetking.numeracy.fast_reader_multiplication"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.division"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.stacking",
+                "com.alphabetking.numeracy.ten_cross",
+                "com.alphabetking.numeracy.family_house",
+                "com.alphabetking.numeracy.rooms_mix"
+        ));
+        appGroupsNumeracy.add(loadAppGroup(
+                "com.alphabetking.numeracy.table",
+                "com.alphabetking.numeracy.bigger_smaller",
+                "com.alphabetking.numeracy.ruler",
+                "com.alphabetking.numeracy.colour_fractions"
+        ));
+        appCategoryNumeracy.setAppGroups(appGroupsNumeracy);
+        appCategories.add(appCategoryNumeracy);
+
 
         appCollection.setAppCategories(appCategories);
 
@@ -1341,8 +1798,8 @@ public class AppCollectionGenerator {
         appGroupsWriting.add(loadAppGroup(
                 "com.alphabetking.drawing_line",
                 "com.thealphabetking.kidsedu.videoapp.how_to_write.so",
-                "com.alphabetking.literacy.write.so"
-                //"com.alphabetking.literacy.trace.so"
+                "com.alphabetking.literacy.write.so",
+                "com.alphabetking.trace_so"
         ));
         appCategoryWriting.setAppGroups(appGroupsWriting);
         appCategories.add(appCategoryWriting);

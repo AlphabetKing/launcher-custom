@@ -4,17 +4,22 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "ai.elimu.launcher_numeracy_multipages"
+        applicationId "ai.elimu.launcher_custom"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1005001
-        versionName "1.5.1"
+        versionCode 1000004
+        versionName "1.0.4"
     }
 
     productFlavors {
         en {
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
+        }
+
+        fr {
+            applicationIdSuffix ".fr"
+            versionNameSuffix "-fr"
         }
 
         no {
