@@ -2,37 +2,44 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "ai.elimu.launcher_custom"
+        applicationId "ai.elimu.launcher_numeracy_multipages"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1000004
-        versionName "1.0.4"
+        versionCode 1004070
+        versionName "1.4.7"
     }
+
+    flavorDimensions "language"
 
     productFlavors {
         en {
+            dimension 'language'
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
         }
 
         fr {
+            dimension 'language'
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
         }
 
         no {
+            dimension 'language'
             applicationIdSuffix ".no"
             versionNameSuffix "-no"
         }
 
         so {
+            dimension 'language'
             applicationIdSuffix ".so"
             versionNameSuffix "-so"
         }
 
         num {
+            dimension 'language'
             applicationIdSuffix ".num"
             versionNameSuffix "-num"
         }
@@ -49,11 +56,10 @@ android {
         abortOnError false
     }
 }
-
 repositories {
     mavenLocal()
     maven {
-        url "http://archiva.educativo.eu:8081/repository/internal/"
+        url "https://dl.bintray.com/elimu-ai/maven/"
     }
 }
 
@@ -63,8 +69,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'ai.elimu:model:1.1.58'
-    compile 'ai.elimu.analytics:eventtracker:1.0.5'
+    //compile 'ai.elimu:model:1.1.67'
+    implementation 'ai.elimu:model:1.1.67'
+    //compile 'ai.elimu.analytics:eventtracker:1.0.5'
+    //implementation(name: 'ai.elimu.analytics.eventtracker-1000005', ext:'aar')
 
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-annotations:23.4.0'

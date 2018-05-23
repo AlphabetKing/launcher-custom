@@ -26,7 +26,7 @@ import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.List;
 
-import ai.elimu.analytics.eventtracker.EventTracker;
+//import ai.elimu.analytics.eventtracker.EventTracker;
 import ai.elimu.launcher_custom.model.AppCategory;
 import ai.elimu.launcher_custom.model.AppCollection;
 import ai.elimu.launcher_custom.model.AppGroup;
@@ -229,7 +229,7 @@ public class HomeScreensActivity extends AppCompatActivity {
 //                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                 startActivity(intent);
 
-                                EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
+                                //EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
                             }
                         });
 
