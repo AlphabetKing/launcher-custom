@@ -5,5 +5,5 @@
     <!-- For Lenovo 7"  use horizontal margin 16dp.
      For Lenovo 10" use horizontal margin 32dp. -->
     <dimen name="activity_horizontal_margin">16dp</dimen> <!-- 32dp for 10in, 16dp for 7in -->
-    <dimen name="activity_vertical_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen> <!-- 10dp for 10in, 8dp for 7in. If 1 textline below icons, use 10dp -->
 </resources>

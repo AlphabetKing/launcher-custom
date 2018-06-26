@@ -4,11 +4,24 @@ android {
     compileSdkVersion 23
     buildToolsVersion '27.0.3'
     defaultConfig {
+        //applicationId "ai.elimu.launcher"                      // LITERACY
+        //applicationId "ai.elimu.launcher_custom_00_logic"        // 0. LOGIC
+        //applicationId "ai.elimu.launcher_custom_01_lettersounds" // 1. LETTER SOUNDS
+        //applicationId "ai.elimu.launcher_custom_02_stories"      // 2. STORIES AUTO
+        //applicationId "ai.elimu.launcher_custom_03_lettershapes" // 3. LETTER SHAPES
+        //applicationId "ai.elimu.launcher_custom_04_writing"      // 4. WRITING
+        //applicationId "ai.elimu.launcher_custom_05_blending"     // 5. BLENDING
+        //applicationId "ai.elimu.launcher_custom_06_words"        // 6. WORDS
+        //applicationId "ai.elimu.launcher_custom_07_sentences"    // 7. SENTENCES
+        //applicationId "ai.elimu.launcher_custom_08_stories"      // 8. STORIES
+        // applicationId "ai.elimu.launcher_numeracy_multipages" // NUMERACY
+
         applicationId "ai.elimu.launcher_numeracy_multipages"
+
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1004070
-        versionName "1.4.7"
+        versionCode 1005053
+        versionName "1.5.5"
     }
 
     flavorDimensions "language"

@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Launcher English ALL Literacy 1.4.7</string>
+    <!--
+    Launcher Logic and Numeracy 1.5.4
+    Launcher English ALL Literacy 1.4.8
+    Launcher English 00 BLU Logic 1.4.8
+    Launcher English 01 BLU Letter sounds 1.4.8
+    Launcher English 02 GRE Stories 1.4.8
+    Launcher English 03 YEL Letter shapes 1.4.8
+    Launcher English 04 ORA Writing 1.4.8
+    Launcher English 05 RED Blending 1.4.8
+    Launcher English 06 PIN Words 1.4.8
+    Launcher English 07 PUR Sentences 1.4.8
+    Launcher English 08 BLU Stories 1.4.8
+    -->
+    <string name="app_name">
+        Launcher Logic and Numeracy - 1.5.5
+    </string>
 </resources>
