@@ -27,6 +27,6 @@
         app:spacingBetweenDots="20dp"
         app:selectedDotColor="#CCFFFFFF"
         app:unselectedDotColor="#CCFFFFFF"
-        app:numberOfDots="8"
+        app:numberOfDots="14"
         app:selectedDotIndex="0" />
 </RelativeLayout>

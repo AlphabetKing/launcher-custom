@@ -16,12 +16,12 @@ android {
         //applicationId "ai.elimu.launcher_custom_08_stories"      // 8. STORIES
         // applicationId "ai.elimu.launcher_numeracy_multipages" // NUMERACY
 
-        applicationId "ai.elimu.launcher_numeracy_multipages"
+        applicationId "ai.elimu.launcher"
 
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1005053
-        versionName "1.5.5"
+        versionCode 1005060
+        versionName "1.5.6"
     }
 
     flavorDimensions "language"
@@ -31,6 +31,12 @@ android {
             dimension 'language'
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
+        }
+
+        enNum {
+            dimension 'language'
+            applicationIdSuffix ".enNum"
+            versionNameSuffix "-enNum"
         }
 
         fr {

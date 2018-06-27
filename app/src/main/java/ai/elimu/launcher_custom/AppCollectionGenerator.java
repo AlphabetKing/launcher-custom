@@ -813,7 +813,7 @@ public class AppCollectionGenerator {
                 "no.leaplearning.numeracy.memory_addition",
                 "no.leaplearning.numeracy.find_the_sum_addition"                    // MISSING APK
         ));
-        appGroupsLetterSounds.add(loadAppGroup(
+        appGroupsAddition.add(loadAppGroup(
                 "no.leaplearning.numeracy.find_match_10_groups",
                 "no.leaplearning.numeracy.working_with_10s",
                 "com.alphabetking.numeracy.right_or_wrong"
@@ -834,7 +834,7 @@ public class AppCollectionGenerator {
         AppCategory appCategorySubtraction = new AppCategory();
         appCategorySubtraction.setName("Subtraction");
         List<AppGroup> appGroupsSubtraction = new ArrayList<>();
-        appGroupsListeningToStories.add(loadAppGroup(
+        appGroupsSubtraction.add(loadAppGroup(
                 "com.alphabetking.numeracy.subtract",
                 "com.alphabetking.numeracy.subtraction",
                 "com.alphabetking.math.sort_subtraction"
@@ -864,7 +864,7 @@ public class AppCollectionGenerator {
 
         // 03 Multiplication
         AppCategory appCategoryMultiplication = new AppCategory();
-        appCategoryMultiplication.setName("Multiplication");
+        appCategoryMultiplication.setName("Multiplication & Division");
         List<AppGroup> appGroupsMultiplication = new ArrayList<>();
         appGroupsMultiplication.add(loadAppGroup(
                 "com.alphabetking.numeracy.multiplication",
@@ -879,10 +879,23 @@ public class AppCollectionGenerator {
                 "com.alphabetking.numeracy.fast_reader_multiplication",
                 "com.alphabetking.numeracy.parking_multiplication"
         ));
+        appGroupsMultiplication.add(loadAppGroup(
+                "com.alphabetking.numeracy.division",
+                "com.alphabetking.numeracy.room_division",
+                "com.alphabetking.numeracy.division_numbers",
+                "com.alphabetking.numeracy.matrix_division",
+                "com.alphabetking.numeracy.division_table",
+                "com.alphabetking.numeracy.sort_division"
+        ));
+        appGroupsMultiplication.add(loadAppGroup(
+                "com.alphabetking.numeracy.parking_division",
+                "no.leaplearning.numeracy.match_divison",
+                "com.alphabetking.numeracy.fast_reader_division"
+        ));
         appCategoryMultiplication.setAppGroups(appGroupsMultiplication);
         appCategories.add(appCategoryMultiplication);
 
-
+/*
         // 04 Division
         AppCategory appCategoryDivision = new AppCategory();
         appCategoryDivision.setName("Division");
@@ -902,7 +915,7 @@ public class AppCollectionGenerator {
         ));
         appCategoryDivision.setAppGroups(appGroupsDivision);
         appCategories.add(appCategoryDivision);
-
+*/
 
         // 05 Mix-Math
         AppCategory appCategoryMixedMath = new AppCategory();
@@ -924,25 +937,28 @@ public class AppCollectionGenerator {
                 "no.leaplearning.numeracy.fast_reader_plus_minus",
                 "no.leaplearning.numeracy.fast_reader_times_divide"
         ));
+        appGroupsMixedMath.add(loadAppGroup(
+                "no.leaplearning.numeracy.table",   //
+                "no.leaplearning.numeracy.color_fractions"          //
+        ));
 
         appCategoryMixedMath.setAppGroups(appGroupsMixedMath);
         appCategories.add(appCategoryMixedMath);
 
-
+/*
         // 06 Concepts
         AppCategory appCategoryConcepts = new AppCategory();
         appCategoryConcepts.setName("Concepts");
         List<AppGroup> appGroupsConcepts = new ArrayList<>();
         appGroupsConcepts.add(loadAppGroup(
-                "no.leaplearning.numeracy.table",
+                "no.leaplearning.numeracy.table",   //
                 "no.leaplearning.numeracy.number_digits",
                 "no.leaplearning.numeracy.decimal"
         ));
         appGroupsConcepts.add(loadAppGroup(
-                //"com.alphabetking.logic.ruler",
                 "com.alphabetking.numeracy.ruler",
                 "com.alphabetking.logic.scale",
-                "no.leaplearning.numeracy.color_fractions"
+                "no.leaplearning.numeracy.color_fractions"          //
         ));
         appGroupsConcepts.add(loadAppGroup(
                 "com.alphabetking.logic.find_correct_size"
@@ -952,6 +968,7 @@ public class AppCollectionGenerator {
         ));
         appCategoryConcepts.setAppGroups(appGroupsConcepts);
         appCategories.add(appCategoryConcepts);
+*/
 /*
         // Test app
         AppCategory appCategoryTest = new AppCategory();
