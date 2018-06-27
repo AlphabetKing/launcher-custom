@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.andraskindler.parallaxviewpager.ParallaxViewPager;
+import com.matthewtamlin.sliding_intro_screen_library.indicators.Dot;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.List;
@@ -72,7 +73,16 @@ public class HomeScreensActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         dotIndicator = (DotIndicator) findViewById(ai.elimu.launcher_custom.R.id.dotIndicator);
-
+        dotIndicator.setDotsClickCallback(new Dot.DotCallback() {
+            @Override
+            public void call(int ID) {
+                int currentPageID = dotIndicator.getSelectedItemIndex();
+                if(currentPageID!=ID) {
+                    viewPager.setCurrentItem(ID,true);
+                }
+            }
+        });
+        dotIndicator.setNumberOfItems(appCollection.getAppCategories().size());
 
         Log.i(getClass().getName(), "onCreate currentPosition: " + currentPosition);
 
@@ -83,7 +93,6 @@ public class HomeScreensActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.i(getClass().getName(), "onPageScrolled");
             }
 
             @Override
@@ -280,13 +289,13 @@ public class HomeScreensActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            Log.i(getClass().getName(), "getCount");
+            Log.i(getClass().getName(), "getCount: " + appCollection.getAppCategories().size());
             return appCollection.getAppCategories().size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Log.i(getClass().getName(), "getPageTitle");
+            Log.i(getClass().getName(), "getPageTitle: " + appCollection.getAppCategories().get(position).getName());
             return appCollection.getAppCategories().get(position).getName();
         }
     }
