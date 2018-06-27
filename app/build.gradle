@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion '27.0.3'
     defaultConfig {
         //applicationId "ai.elimu.launcher"                      // LITERACY
@@ -87,19 +87,18 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     //compile 'ai.elimu:model:1.1.67'
     implementation 'ai.elimu:model:1.1.67'
     //compile 'ai.elimu.analytics:eventtracker:1.0.5'
     //implementation(name: 'ai.elimu.analytics.eventtracker-1000005', ext:'aar')
-
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-annotations:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:gridlayout-v7:23.4.0'
     compile 'com.andraskindler.parallaxviewpager:parallaxviewpager:0.3.1'
-    compile 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
-//    compile 'com.afollestad.material-dialogs:core:0.8.6.2'
-//    compile 'com.google.android:flexbox:0.3.0'
+    //    compile 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
+    //    compile 'com.afollestad.material-dialogs:core:0.8.6.2'
+    //    compile 'com.google.android:flexbox:0.3.0'
     testCompile 'junit:junit:4.12'
+    implementation project(':sliding-intro-screen')
 }
