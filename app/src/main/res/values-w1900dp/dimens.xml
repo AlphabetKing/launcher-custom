@@ -1,0 +1,9 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <!-- For Lenovo 7"  use horizontal margin 16dp.
+     For Lenovo 10" use horizontal margin 32dp. -->
+    <dimen name="activity_horizontal_margin">54dp</dimen> <!-- 32dp for 10in, 16dp for 7in, 54 dp for 21in (1920px) -->
+    <dimen name="activity_vertical_margin">8dp</dimen> <!-- 10dp for 10in, 8dp for 7in, 8dp for 21in. If 1 textline below icons, use 10dp -->
+</resources>

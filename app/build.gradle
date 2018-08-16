@@ -14,14 +14,29 @@ android {
         //applicationId "ai.elimu.launcher_custom_06_words"        // 6. WORDS
         //applicationId "ai.elimu.launcher_custom_07_sentences"    // 7. SENTENCES
         //applicationId "ai.elimu.launcher_custom_08_stories"      // 8. STORIES
-        // applicationId "ai.elimu.launcher_numeracy_multipages" // NUMERACY
+
+        //applicationId "ai.elimu.launcher_numeracy_multipages"    // NUMERACY
+        //applicationId "ai.elimu.launcher_custom_01_numbers"
+        //applicationId "ai.elimu.launcher_custom_02_addition"
+        //applicationId "ai.elimu.launcher_custom_03_subtraction"
+        //applicationId "ai.elimu.launcher_custom_04_multiplication"
+        //applicationId "ai.elimu.launcher_custom_04_multiplication_division"
+        //applicationId "ai.elimu.launcher_custom_05_division"
+        //applicationId "ai.elimu.launcher_custom_06_mixed"
+        //applicationId "ai.elimu.launcher_custom_06_concept_mixed"
+        //applicationId "ai.elimu.launcher_custom_07_concepts"
+
+        //applicationId "ai.elimu.launcher"                   // ENG & all NUM
+        //applicationId "ai.elimu.launcher_eng_num_add_sub"   // ENG & numbers, addition, subtraction
+
+        //applicationId "ai.elimu.launcher_custom"          // NORSK Literacy ALL
 
         applicationId "ai.elimu.launcher"
 
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1005060
-        versionName "1.5.6"
+        versionCode 1006015
+        versionName "1.6.1"
     }
 
     flavorDimensions "language"

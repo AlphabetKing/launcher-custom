@@ -19,6 +19,7 @@
         android:text="Category name"
         android:textColor="#FFF"
         android:textSize="30sp" />
+    <!-- 60 sp for 21 in ^^ -->
 
     <ScrollView
         android:layout_width="match_parent"

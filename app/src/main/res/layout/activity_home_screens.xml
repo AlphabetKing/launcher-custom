@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="42dp"
-        android:background="@drawable/background_indigo" />
+        android:background="@drawable/roto2b5" />
+    <!--android:background="@drawable/background_indigo"-->
 
     <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
         android:id="@+id/dotIndicator"
@@ -27,6 +28,5 @@
         app:spacingBetweenDots="20dp"
         app:selectedDotColor="#CCFFFFFF"
         app:unselectedDotColor="#CCFFFFFF"
-        app:numberOfDots="14"
         app:selectedDotIndex="0" />
 </RelativeLayout>

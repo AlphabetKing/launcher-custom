@@ -90,7 +90,8 @@ public class HomeScreensActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         viewPager = (ParallaxViewPager) findViewById(ai.elimu.launcher_custom.R.id.container);
-        viewPager.setBackgroundResource(R.drawable.background_indigo);
+        //viewPager.setBackgroundResource(R.drawable.background_indigo);
+        viewPager.setBackgroundResource(R.drawable.roto2b5);
         viewPager.setAdapter(mSectionsPagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -184,7 +185,9 @@ public class HomeScreensActivity extends AppCompatActivity {
             // Set category name
             TextView textViewCategoryName = (TextView) rootView.findViewById(R.id.textViewCategoryName);
             AppCategory appCategory = appCollection.getAppCategories().get(sectionNumber);
-            textViewCategoryName.setText(appCategory.getName());
+            android.graphics.Typeface font = android.graphics.Typeface.createFromAsset(getActivity().getAssets(), "fonts/luckiestguy.ttf");
+            textViewCategoryName.setTypeface(font);
+            textViewCategoryName.setText(appCategory.getName().toUpperCase());
 
             LinearLayout linearLayoutAppGroupsContainer = (LinearLayout) rootView.findViewById(R.id.linearLayoutAppGroupsContainer);
             initializeAppCategory(linearLayoutAppGroupsContainer, sectionNumber);
