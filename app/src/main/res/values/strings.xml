@@ -25,4 +25,13 @@
     <string name="app_name">
         Launcher English ALL Literacy 1.6.1
     </string>
+
+    <string name="video_name"> <!-- video file name in raw folder -->
+        video_1
+    </string>
+
+    <string name="video_page_name"> <!-- video page caption -->
+        video page
+    </string>
+
 </resources>

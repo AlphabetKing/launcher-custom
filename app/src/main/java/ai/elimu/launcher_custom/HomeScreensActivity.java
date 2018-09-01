@@ -5,6 +5,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,11 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.andraskindler.parallaxviewpager.ParallaxViewPager;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.Dot;
@@ -44,6 +49,8 @@ public class HomeScreensActivity extends AppCompatActivity {
     private DotIndicator dotIndicator;
 
     private static int currentPosition = 1;
+
+    private int countOffset = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +77,17 @@ public class HomeScreensActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        Resources res = getResources();
+        boolean withVideoPage = res.getBoolean(R.bool.video_page);
+        if(withVideoPage)
+            countOffset = 1;
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         dotIndicator = (DotIndicator) findViewById(ai.elimu.launcher_custom.R.id.dotIndicator);
-        dotIndicator.setNumberOfItems(appCollection.getAppCategories().size());
+        dotIndicator.setNumberOfItems(appCollection.getAppCategories().size()+countOffset);
         dotIndicator.setDotsClickCallback(new Dot.DotCallback() {
             @Override
             public void call(int ID) {
@@ -87,6 +99,7 @@ public class HomeScreensActivity extends AppCompatActivity {
         });
 
         Log.i(getClass().getName(), "onCreate currentPosition: " + currentPosition);
+
 
         // Set up the ViewPager with the sections adapter.
         viewPager = (ParallaxViewPager) findViewById(ai.elimu.launcher_custom.R.id.container);
@@ -105,6 +118,10 @@ public class HomeScreensActivity extends AppCompatActivity {
 
                 dotIndicator.setSelectedItem(position, true);
                 currentPosition = position;
+                if(countOffset==1 && position == appCollection.getAppCategories().size()+countOffset) {
+                    LastPageFragment lastPage = (LastPageFragment)mSectionsPagerAdapter.getItem(mSectionsPagerAdapter.getCount());
+                    lastPage.stopVideo();
+                }
             }
 
             @Override
@@ -147,6 +164,92 @@ public class HomeScreensActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    public static class LastPageFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+        private int stopPosition = 1;
+        private boolean started = false;
+        private VideoView videoView = null;
+        private MediaPlayer mediaPlayer = null;
+
+        public LastPageFragment() {
+        }
+
+        public static LastPageFragment newInstance(int sectionNumber) {
+//            Log.i(PlaceholderFragment.class.getName(), "newInstance");
+//            Log.i(PlaceholderFragment.class.getName(), "newInstance sectionNumber: " + sectionNumber);
+//            Log.i(PlaceholderFragment.class.getName(), "newInstance currentPosition: " + currentPosition);
+
+            LastPageFragment fragment = new LastPageFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public void stopVideo() {
+            if(started) {
+                videoView.stopPlayback();
+                started = false;
+                stopPosition = 1;
+                videoView.seekTo(1);
+            }
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_last_page, container, false);
+
+            // Set category name
+            TextView textViewCategoryName = (TextView) rootView.findViewById(R.id.textViewCategoryName);
+            android.graphics.Typeface font = android.graphics.Typeface.createFromAsset(getActivity().getAssets(), "fonts/luckiestguy.ttf");
+            textViewCategoryName.setTypeface(font);
+
+            Resources res = getResources();
+            String pageCaption = res.getString(R.string.video_page_name);
+
+            textViewCategoryName.setText(pageCaption);
+            videoView = (VideoView) rootView.findViewById(R.id.videoView);
+            String path = "android.resource://" + getActivity().getPackageName() + "/raw/" + res.getString(R.string.video_name);
+            videoView.setVideoURI(Uri.parse(path));
+
+            final MediaController mediaController = new MediaController(getActivity());
+            mediaController.setAnchorView(videoView);
+            videoView.setMediaController(mediaController);
+            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    started = false;
+                    mediaPlayer.seekTo(0);
+                }
+            });
+
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayer = mp;
+                }
+            });
+
+            videoView.setOnTouchListener (new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+
+                    if(!started) {
+                        mediaPlayer.start();
+                        started = true;
+                    } else {
+                        mediaPlayer.pause();
+                        started = false;
+                    }
+
+                    return false;
+                }
+            });
+
+            return rootView;
+        }
+    }
 
     public static class PlaceholderFragment extends Fragment {
 
@@ -289,13 +392,16 @@ public class HomeScreensActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             Log.i(getClass().getName(), "getItem");
             Log.i(getClass().getName(), "getItem position: " + position);
+            if(position>=appCollection.getAppCategories().size()) {
+                return LastPageFragment.newInstance(position);
+            }
             return PlaceholderFragment.newInstance(position);
         }
 
         @Override
         public int getCount() {
             Log.i(getClass().getName(), "getCount: " + appCollection.getAppCategories().size());
-            return appCollection.getAppCategories().size();
+            return appCollection.getAppCategories().size()+countOffset;
         }
 
         @Override
