@@ -14,6 +14,8 @@ android {
         //applicationId "ai.elimu.launcher_custom_06_words"        // 6. WORDS
         //applicationId "ai.elimu.launcher_custom_07_sentences"    // 7. SENTENCES
         //applicationId "ai.elimu.launcher_custom_08_stories"      // 8. STORIES
+        //applicationId "ai.elimu.launcher_custom_09_numeracy"     // 9. NUMERACY
+        //applicationId "ai.elimu.launcher_custom_10_themes"      // 10. THEMES
 
         //applicationId "ai.elimu.launcher_numeracy_multipages"    // NUMERACY
         //applicationId "ai.elimu.launcher_custom_01_numbers"
@@ -31,12 +33,12 @@ android {
 
         //applicationId "ai.elimu.launcher_custom"          // NORSK Literacy ALL
 
-        applicationId "ai.elimu.launcher"
+        applicationId "ai.elimu.launcher_custom_10_themes"      // 10. THEMES
 
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1006015
-        versionName "1.6.1"
+        versionCode 1006040
+        versionName "1.6.4"
     }
 
     flavorDimensions "language"

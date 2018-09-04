@@ -28,5 +28,6 @@
         android:scrollHorizontally="true"
         android:text="Find - Colors 2.4"
         android:textColor="#FFF"
-        android:textSize="24sp" />
+        android:textSize="14sp" />
+    <!-- 24sp for 21 in ^^ -->
 </LinearLayout>

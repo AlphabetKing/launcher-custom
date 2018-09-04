@@ -11,6 +11,8 @@
     Launcher English 06 PIN Words 1.4.8
     Launcher English 07 PUR Sentences 1.4.8
     Launcher English 08 BLU Stories 1.4.8
+    Launcher English 10 THEMES 1.4.8
+    Launcher English Numeracy 1.6.3
 
     Launcher ALL Logic and Numeracy
     Launhcer 00 Logic
@@ -23,6 +25,6 @@
     Launcher ENG, NUM, ADD, SUB 1.6.0
     -->
     <string name="app_name">
-        Launcher English ALL Literacy 1.6.1
+        Launcher English 10 THEMES 1.6.4
     </string>
 </resources>
