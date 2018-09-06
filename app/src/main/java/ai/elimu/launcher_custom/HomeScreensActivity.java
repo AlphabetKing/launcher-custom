@@ -331,55 +331,67 @@ public class HomeScreensActivity extends AppCompatActivity {
                 FlowLayout flowLayoutAppGroup = (FlowLayout) LayoutInflater.from(getActivity())
                         .inflate(R.layout.fragment_home_screen_app_group, linearLayoutAppGroupsContainer, false);
 
-                for (final ApplicationGson application : appGroup.getApplications()) {
+                if(appGroup.getApplications().size()>0) {
+                    LinearLayout linearLayoutTitleView = (LinearLayout) LayoutInflater.from(getActivity())
+                            .inflate(R.layout.fragment_home_screen_app_group_title, flowLayoutAppGroup, false);
+
+                    TextView appLabelTitleView = (TextView) linearLayoutTitleView.findViewById(R.id.titleText);
+                    android.graphics.Typeface font = android.graphics.Typeface.createFromAsset(getActivity().getAssets(), "fonts/luckiestguy.ttf");
+                    appLabelTitleView.setTypeface(font);
+                    appLabelTitleView.setText(appGroup.getGroupTitle());
+
+                    linearLayoutAppGroupsContainer.addView(linearLayoutTitleView);
+
+                    for (final ApplicationGson application : appGroup.getApplications()) {
 //                    Log.i(getClass().getName(), "application.getPackageName(): " + application.getPackageName());
 
-                    final PackageManager packageManager = getActivity().getPackageManager();
+                        final PackageManager packageManager = getActivity().getPackageManager();
 
-                    try {
-                        // Set app icon
-                        ApplicationInfo applicationInfo = packageManager.getApplicationInfo(application.getPackageName(), PackageManager.GET_META_DATA);
-                        Resources resources = packageManager.getResourcesForApplication(application.getPackageName());
-                        Drawable icon;
-                        if (Build.VERSION.SDK_INT > 21) {
-                            icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH, null);
-                        } else {
-                            //This method was deprecated in API level 22
-                            icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH);
-                        }
-//                        Log.i(getClass().getName(), "icon: " + icon);
-                        LinearLayout linearLayoutAppView = (LinearLayout) LayoutInflater.from(getActivity())
-                                .inflate(R.layout.fragment_home_screen_app_group_app_view, flowLayoutAppGroup, false);
-                        ImageView appIconImageView = (ImageView) linearLayoutAppView.findViewById(ai.elimu.launcher_custom.R.id.appIconImageView);
-                        appIconImageView.setImageDrawable(icon);
-                        appIconImageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Log.i(getClass().getName(), "appIconImageView onClick");
-
-                                Intent intent = packageManager.getLaunchIntentForPackage(application.getPackageName());
-                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                startActivity(intent);
-
-                                //EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
+                        try {
+                            // Set app icon
+                            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(application.getPackageName(), PackageManager.GET_META_DATA);
+                            Resources resources = packageManager.getResourcesForApplication(application.getPackageName());
+                            Drawable icon;
+                            if (Build.VERSION.SDK_INT > 21) {
+                                icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH, null);
+                            } else {
+                                //This method was deprecated in API level 22
+                                icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH);
                             }
-                        });
+//                        Log.i(getClass().getName(), "icon: " + icon);
+                            LinearLayout linearLayoutAppView = (LinearLayout) LayoutInflater.from(getActivity())
+                                    .inflate(R.layout.fragment_home_screen_app_group_app_view, flowLayoutAppGroup, false);
+                            ImageView appIconImageView = (ImageView) linearLayoutAppView.findViewById(ai.elimu.launcher_custom.R.id.appIconImageView);
+                            appIconImageView.setImageDrawable(icon);
+                            appIconImageView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Log.i(getClass().getName(), "appIconImageView onClick");
 
-                        // Set app title
-                        String applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
+                                    Intent intent = packageManager.getLaunchIntentForPackage(application.getPackageName());
+                                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                    startActivity(intent);
+
+                                    //EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
+                                }
+                            });
+
+                            // Set app title
+                            String applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
 //                        Log.i(getClass().getName(), "applicationLabel: " + applicationLabel);
-                        TextView appLabelTextView = (TextView) linearLayoutAppView.findViewById(R.id.textViewAppLabel);
-                        appLabelTextView.setText(applicationLabel);
+                            TextView appLabelTextView = (TextView) linearLayoutAppView.findViewById(R.id.textViewAppLabel);
+                            appLabelTextView.setText(applicationLabel);
 
-                        flowLayoutAppGroup.addView(linearLayoutAppView);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        Log.e(getClass().getName(), "Application not installed: " + application.getPackageName());
+                            flowLayoutAppGroup.addView(linearLayoutAppView);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Log.e(getClass().getName(), "Application not installed: " + application.getPackageName());
+                        }
                     }
-                }
 
-                if (flowLayoutAppGroup.getChildCount() > 0) {
-                    linearLayoutAppGroupsContainer.addView(flowLayoutAppGroup);
+                    if (flowLayoutAppGroup.getChildCount() > 0) {
+                        linearLayoutAppGroupsContainer.addView(flowLayoutAppGroup);
+                    }
                 }
             }
         }

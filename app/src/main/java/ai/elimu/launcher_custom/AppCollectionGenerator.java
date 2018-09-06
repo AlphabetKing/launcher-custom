@@ -44,6 +44,8 @@ public class AppCollectionGenerator {
                 "com.alphabetking.literacy.find_letter.sw",
                 "com.alphabetking.literacy.find_letter.sw"
         ));
+        appGroupsLogic.add(loadAppGroup("Group 22222"
+        ));
         appGroupsLogic.add(loadAppGroup("Group 3",
                 "com.alphabetking.literacy.find_letter.sw",
                 "com.alphabetking.literacy.find_letter.sw",
