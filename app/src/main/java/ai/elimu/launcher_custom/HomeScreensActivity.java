@@ -338,7 +338,7 @@ public class HomeScreensActivity extends AppCompatActivity {
                     TextView appLabelTitleView = (TextView) linearLayoutTitleView.findViewById(R.id.titleText);
                     android.graphics.Typeface font = android.graphics.Typeface.createFromAsset(getActivity().getAssets(), "fonts/luckiestguy.ttf");
                     appLabelTitleView.setTypeface(font);
-                    appLabelTitleView.setText(appGroup.getGroupTitle());
+                    appLabelTitleView.setText(appGroup.getGroupTitle().toUpperCase());
 
                     linearLayoutAppGroupsContainer.addView(linearLayoutTitleView);
 
