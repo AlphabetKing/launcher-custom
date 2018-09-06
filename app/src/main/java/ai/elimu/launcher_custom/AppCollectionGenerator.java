@@ -2892,7 +2892,7 @@ public class AppCollectionGenerator {
     }
 
 
-    private static AppGroup loadAppGroup(String... packageNames) {
+    private static AppGroup loadAppGroup(String appGroupTitle, String... packageNames) {
         AppGroup appGroup = new AppGroup();
 
         List<ApplicationGson> applications = new ArrayList<>();
@@ -2902,6 +2902,7 @@ public class AppCollectionGenerator {
             applications.add(application);
         }
         appGroup.setApplications(applications);
+        appGroup.setGroupTitle(appGroupTitle);
 
         return appGroup;
     }
