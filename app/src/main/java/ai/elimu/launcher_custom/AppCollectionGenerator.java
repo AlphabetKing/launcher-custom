@@ -21,7 +21,7 @@ public class AppCollectionGenerator {
 
         List<AppCategory> appCategories = new ArrayList<>();
 
-
+/*
         // 00 Logic
         AppCategory appCategoryLogic = new AppCategory();
         appCategoryLogic.setName("Logic");
@@ -332,40 +332,40 @@ public class AppCollectionGenerator {
         ));
         appCategoryReadingStories.setAppGroups(appGroupsReadingStories);
         appCategories.add(appCategoryReadingStories);
-
+*/
         // 08 Themes
         AppCategory appCategoryThemes = new AppCategory();
         appCategoryThemes.setName("Themes");
         List<AppGroup> appGroupsThemes = new ArrayList<>();
-        appGroupsThemes.add(loadAppGroup(
+        appGroupsThemes.add(loadAppGroup("Sexual Abuse",
                 "no.leaplearning.literacy.abuse_sort_it_out",
                 "no.leaplearning.literacy.abuse_complete",
                 "no.leaplearning.literacy.abuse_comprehension",
                 "no.leaplearning.literacy.abuse_make",
                 "no.leaplearning.literacy.abuse_stories"
         ));
-        appGroupsThemes.add(loadAppGroup(
+        appGroupsThemes.add(loadAppGroup("Good Citizen",
                 "no.leaplearning.literacy.citizen_sort_it_out",
                 "no.leaplearning.literacy.citizen_complete",
                 "no.leaplearning.literacy.citizen_comprehension",
                 "no.leaplearning.literacy.citizen_make",
                 "no.leaplearning.literacy.citizen_stories"
         ));
-        appGroupsThemes.add(loadAppGroup(
+        appGroupsThemes.add(loadAppGroup("Health",
                 "no.leaplearning.literacy.health_sort_it_out",
                 "no.leaplearning.literacy.health_complete",
                 "no.leaplearning.literacy.health_comprehension",
                 "no.leaplearning.literacy.health_make",
                 "no.leaplearning.literacy.health_stories"
         ));
-        appGroupsThemes.add(loadAppGroup(
+        appGroupsThemes.add(loadAppGroup("Rigts and responsibilities",
                 "no.leaplearning.literacy.rights_sort_it_out",
                 "no.leaplearning.literacy.rights_complete",
                 "no.leaplearning.literacy.rights_comprehension",
                 "no.leaplearning.literacy.rights_make",
                 "no.leaplearning.literacy.rights_stories"
         ));
-        appGroupsThemes.add(loadAppGroup(
+        appGroupsThemes.add(loadAppGroup("Dental care",
                 "no.leaplearning.literacy.teeth_sort_it_out",
                 "no.leaplearning.literacy.teeth_complete",
                 "no.leaplearning.literacy.teeth_comprehension",
@@ -1690,12 +1690,6 @@ public class AppCollectionGenerator {
         appGroupsReadingStories.add(loadAppGroup(
                 "no.leaplearning.literacy.books_level_a.no",
                 "no.leaplearning.literacy.books_level_b.no"
-        ));
-        appGroupsReadingStories.add(loadAppGroup(
-                //package-ids
-        ));
-        appGroupsReadingStories.add(loadAppGroup(
-                //package-ids
         ));
         appCategoryReadingStories.setAppGroups(appGroupsReadingStories);
         appCategories.add(appCategoryReadingStories);
