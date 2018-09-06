@@ -33,6 +33,7 @@ import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 import java.util.List;
 
 //import ai.elimu.analytics.eventtracker.EventTracker;
+import ai.elimu.launcher_custom.controller.CustomMediaController;
 import ai.elimu.launcher_custom.model.AppCategory;
 import ai.elimu.launcher_custom.model.AppCollection;
 import ai.elimu.launcher_custom.model.AppGroup;
@@ -44,9 +45,11 @@ public class HomeScreensActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private ParallaxViewPager viewPager;
+    private ParallaxViewPager mViewPager;
 
-    private DotIndicator dotIndicator;
+    private DotIndicator mDotIndicator;
+
+    private LastPageFragment mLastPage;
 
     private static int currentPosition = 1;
 
@@ -86,14 +89,14 @@ public class HomeScreensActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        dotIndicator = (DotIndicator) findViewById(ai.elimu.launcher_custom.R.id.dotIndicator);
-        dotIndicator.setNumberOfItems(appCollection.getAppCategories().size()+countOffset);
-        dotIndicator.setDotsClickCallback(new Dot.DotCallback() {
+        mDotIndicator = (DotIndicator) findViewById(ai.elimu.launcher_custom.R.id.dotIndicator);
+        mDotIndicator.setNumberOfItems(appCollection.getAppCategories().size()+countOffset);
+        mDotIndicator.setDotsClickCallback(new Dot.DotCallback() {
             @Override
             public void call(int ID) {
-                int currentPageID = dotIndicator.getSelectedItemIndex();
+                int currentPageID = mDotIndicator.getSelectedItemIndex();
                 if(currentPageID!=ID) {
-                    viewPager.setCurrentItem(ID,true);
+                    mViewPager.setCurrentItem(ID,true);
                 }
             }
         });
@@ -102,11 +105,11 @@ public class HomeScreensActivity extends AppCompatActivity {
 
 
         // Set up the ViewPager with the sections adapter.
-        viewPager = (ParallaxViewPager) findViewById(ai.elimu.launcher_custom.R.id.container);
-        //viewPager.setBackgroundResource(R.drawable.background_indigo);
-        viewPager.setBackgroundResource(R.drawable.roto2b5);
-        viewPager.setAdapter(mSectionsPagerAdapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager = (ParallaxViewPager) findViewById(ai.elimu.launcher_custom.R.id.container);
+        //mViewPager.setBackgroundResource(R.drawable.background_indigo);
+        mViewPager.setBackgroundResource(R.drawable.roto2b5);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -115,12 +118,13 @@ public class HomeScreensActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 Log.i(getClass().getName(), "onPageSelected");
                 Log.i(getClass().getName(), "position: " + position);
+                Log.i(getClass().getName(), "size: " + appCollection.getAppCategories().size());
 
-                dotIndicator.setSelectedItem(position, true);
+                mDotIndicator.setSelectedItem(position, true);
                 currentPosition = position;
-                if(countOffset==1 && position == appCollection.getAppCategories().size()+countOffset) {
-                    LastPageFragment lastPage = (LastPageFragment)mSectionsPagerAdapter.getItem(mSectionsPagerAdapter.getCount());
-                    lastPage.stopVideo();
+                if(countOffset==1 && position == appCollection.getAppCategories().size()-1) {
+                    if(mLastPage !=null)
+                        mLastPage.stopVideo();
                 }
             }
 
@@ -165,39 +169,35 @@ public class HomeScreensActivity extends AppCompatActivity {
     }
 
     public static class LastPageFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-        private int stopPosition = 1;
         private boolean started = false;
-        private VideoView videoView = null;
-        private MediaPlayer mediaPlayer = null;
+        private VideoView mVideoView = null;
+        private CustomMediaController mMediaController = null;
+        private MediaPlayer mMediaPlayer = null;
+        private boolean isLooping = false;
 
         public LastPageFragment() {
         }
 
-        public static LastPageFragment newInstance(int sectionNumber) {
-//            Log.i(PlaceholderFragment.class.getName(), "newInstance");
-//            Log.i(PlaceholderFragment.class.getName(), "newInstance sectionNumber: " + sectionNumber);
-//            Log.i(PlaceholderFragment.class.getName(), "newInstance currentPosition: " + currentPosition);
-
-            LastPageFragment fragment = new LastPageFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+        public static LastPageFragment newInstance(){ //int sectionNumber) {
+            return new LastPageFragment();
         }
 
         public void stopVideo() {
-            if(started) {
-                videoView.stopPlayback();
-                started = false;
-                stopPosition = 1;
-                videoView.seekTo(1);
+            if(mMediaPlayer !=null && mVideoView !=null) {
+                mMediaController.hide();
+                if (started) {
+                    mMediaPlayer.pause();
+                    started = false;
+                    mMediaPlayer.seekTo(1);
+                }
             }
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            Log.e(getClass().getName(), "ON CREATE VIEW");
+
             View rootView = inflater.inflate(R.layout.fragment_last_page, container, false);
 
             // Set category name
@@ -206,17 +206,32 @@ public class HomeScreensActivity extends AppCompatActivity {
             textViewCategoryName.setTypeface(font);
 
             Resources res = getResources();
-            String pageCaption = res.getString(R.string.video_page_name);
+            String pageCaption = res.getString(R.string.video_page_name).toUpperCase();
 
-            textViewCategoryName.setText(pageCaption);
-            videoView = (VideoView) rootView.findViewById(R.id.videoView);
+            textViewCategoryName.setText( pageCaption);
+            mVideoView = (VideoView) rootView.findViewById(R.id.videoView);
             String path = "android.resource://" + getActivity().getPackageName() + "/raw/" + res.getString(R.string.video_name);
-            videoView.setVideoURI(Uri.parse(path));
+            mVideoView.setVideoURI(Uri.parse(path));
 
-            final MediaController mediaController = new MediaController(getActivity());
-            mediaController.setAnchorView(videoView);
-            videoView.setMediaController(mediaController);
-            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            mMediaController = new CustomMediaController(getActivity());
+            mMediaController.setAnchorView(mVideoView);
+            Runnable loopButtonCallback = new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(getClass().getName(), "Button pressed " + String.valueOf(isLooping) );
+                    isLooping = !isLooping;
+                    if(isLooping) {
+                        mMediaController.setButtonState(CustomMediaController.LoopButtonState.ENABLED);
+                        mMediaPlayer.setLooping(true);
+                    } else {
+                        mMediaController.setButtonState(CustomMediaController.LoopButtonState.DISABLED);
+                        mMediaPlayer.setLooping(false);
+                    }
+                }
+            };
+            mMediaController.setLoopButtonCallback(loopButtonCallback);
+            mVideoView.setMediaController(mMediaController);
+            mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     started = false;
@@ -224,22 +239,23 @@ public class HomeScreensActivity extends AppCompatActivity {
                 }
             });
 
-            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mediaPlayer = mp;
+                    mMediaPlayer = mp;
+                    Log.d(getClass().getName(), "++++++++ SET MEDIA PLAYER " + String.valueOf(mMediaPlayer));
                 }
             });
 
-            videoView.setOnTouchListener (new View.OnTouchListener() {
+            mVideoView.setOnTouchListener (new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent event) {
 
-                    if(!started) {
-                        mediaPlayer.start();
+                    if(!mMediaPlayer.isPlaying()) {
+                        mMediaPlayer.start();
                         started = true;
                     } else {
-                        mediaPlayer.pause();
+                        mMediaPlayer.pause();
                         started = false;
                     }
 
@@ -254,6 +270,7 @@ public class HomeScreensActivity extends AppCompatActivity {
     public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
+        public int sectionNumber;
 
         public PlaceholderFragment() {
         }
@@ -263,10 +280,13 @@ public class HomeScreensActivity extends AppCompatActivity {
             Log.i(PlaceholderFragment.class.getName(), "newInstance sectionNumber: " + sectionNumber);
             Log.i(PlaceholderFragment.class.getName(), "newInstance currentPosition: " + currentPosition);
 
+            Log.d("LAUNCHER", "newInstance: CONSTRUCTOR 2!");
+
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+            fragment.sectionNumber = sectionNumber;
             return fragment;
         }
 
@@ -278,10 +298,6 @@ public class HomeScreensActivity extends AppCompatActivity {
             Log.i(getClass().getName(), "onCreateView currentPosition: " + currentPosition);
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             Log.i(getClass().getName(), "onCreateView sectionNumber: " + sectionNumber);
-//            if ((sectionNumber == 0) && (currentPosition > 0)) {
-//                sectionNumber = currentPosition;
-//            }
-//            Log.i(getClass().getName(), "onCreateView sectionNumber: " + sectionNumber);
 
             View rootView = inflater.inflate(R.layout.fragment_home_screen, container, false);
 
@@ -315,55 +331,67 @@ public class HomeScreensActivity extends AppCompatActivity {
                 FlowLayout flowLayoutAppGroup = (FlowLayout) LayoutInflater.from(getActivity())
                         .inflate(R.layout.fragment_home_screen_app_group, linearLayoutAppGroupsContainer, false);
 
-                for (final ApplicationGson application : appGroup.getApplications()) {
+                if(appGroup.getApplications().size()>0) {
+                    LinearLayout linearLayoutTitleView = (LinearLayout) LayoutInflater.from(getActivity())
+                            .inflate(R.layout.fragment_home_screen_app_group_title, flowLayoutAppGroup, false);
+
+                    TextView appLabelTitleView = (TextView) linearLayoutTitleView.findViewById(R.id.titleText);
+                    android.graphics.Typeface font = android.graphics.Typeface.createFromAsset(getActivity().getAssets(), "fonts/luckiestguy.ttf");
+                    appLabelTitleView.setTypeface(font);
+                    appLabelTitleView.setText(appGroup.getGroupTitle().toUpperCase());
+
+                    linearLayoutAppGroupsContainer.addView(linearLayoutTitleView);
+
+                    for (final ApplicationGson application : appGroup.getApplications()) {
 //                    Log.i(getClass().getName(), "application.getPackageName(): " + application.getPackageName());
 
-                    final PackageManager packageManager = getActivity().getPackageManager();
+                        final PackageManager packageManager = getActivity().getPackageManager();
 
-                    try {
-                        // Set app icon
-                        ApplicationInfo applicationInfo = packageManager.getApplicationInfo(application.getPackageName(), PackageManager.GET_META_DATA);
-                        Resources resources = packageManager.getResourcesForApplication(application.getPackageName());
-                        Drawable icon;
-                        if (Build.VERSION.SDK_INT > 21) {
-                            icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH, null);
-                        } else {
-                            //This method was deprecated in API level 22
-                            icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH);
-                        }
-//                        Log.i(getClass().getName(), "icon: " + icon);
-                        LinearLayout linearLayoutAppView = (LinearLayout) LayoutInflater.from(getActivity())
-                                .inflate(R.layout.fragment_home_screen_app_group_app_view, flowLayoutAppGroup, false);
-                        ImageView appIconImageView = (ImageView) linearLayoutAppView.findViewById(ai.elimu.launcher_custom.R.id.appIconImageView);
-                        appIconImageView.setImageDrawable(icon);
-                        appIconImageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Log.i(getClass().getName(), "appIconImageView onClick");
-
-                                Intent intent = packageManager.getLaunchIntentForPackage(application.getPackageName());
-                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                startActivity(intent);
-
-                                //EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
+                        try {
+                            // Set app icon
+                            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(application.getPackageName(), PackageManager.GET_META_DATA);
+                            Resources resources = packageManager.getResourcesForApplication(application.getPackageName());
+                            Drawable icon;
+                            if (Build.VERSION.SDK_INT > 21) {
+                                icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH, null);
+                            } else {
+                                //This method was deprecated in API level 22
+                                icon = resources.getDrawableForDensity(applicationInfo.icon, DisplayMetrics.DENSITY_XXHIGH);
                             }
-                        });
+//                        Log.i(getClass().getName(), "icon: " + icon);
+                            LinearLayout linearLayoutAppView = (LinearLayout) LayoutInflater.from(getActivity())
+                                    .inflate(R.layout.fragment_home_screen_app_group_app_view, flowLayoutAppGroup, false);
+                            ImageView appIconImageView = (ImageView) linearLayoutAppView.findViewById(ai.elimu.launcher_custom.R.id.appIconImageView);
+                            appIconImageView.setImageDrawable(icon);
+                            appIconImageView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Log.i(getClass().getName(), "appIconImageView onClick");
 
-                        // Set app title
-                        String applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
+                                    Intent intent = packageManager.getLaunchIntentForPackage(application.getPackageName());
+                                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                    startActivity(intent);
+
+                                    //EventTracker.reportApplicationOpenedEvent(getContext(), application.getPackageName());
+                                }
+                            });
+
+                            // Set app title
+                            String applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
 //                        Log.i(getClass().getName(), "applicationLabel: " + applicationLabel);
-                        TextView appLabelTextView = (TextView) linearLayoutAppView.findViewById(R.id.textViewAppLabel);
-                        appLabelTextView.setText(applicationLabel);
+                            TextView appLabelTextView = (TextView) linearLayoutAppView.findViewById(R.id.textViewAppLabel);
+                            appLabelTextView.setText(applicationLabel);
 
-                        flowLayoutAppGroup.addView(linearLayoutAppView);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        Log.e(getClass().getName(), "Application not installed: " + application.getPackageName());
+                            flowLayoutAppGroup.addView(linearLayoutAppView);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Log.e(getClass().getName(), "Application not installed: " + application.getPackageName());
+                        }
                     }
-                }
 
-                if (flowLayoutAppGroup.getChildCount() > 0) {
-                    linearLayoutAppGroupsContainer.addView(flowLayoutAppGroup);
+                    if (flowLayoutAppGroup.getChildCount() > 0) {
+                        linearLayoutAppGroupsContainer.addView(flowLayoutAppGroup);
+                    }
                 }
             }
         }
@@ -381,7 +409,6 @@ public class HomeScreensActivity extends AppCompatActivity {
         }
     }
 
-
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -392,15 +419,17 @@ public class HomeScreensActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             Log.i(getClass().getName(), "getItem");
             Log.i(getClass().getName(), "getItem position: " + position);
-            if(position>=appCollection.getAppCategories().size()) {
-                return LastPageFragment.newInstance(position);
+            if(position==appCollection.getAppCategories().size()) {
+                LastPageFragment lPage = LastPageFragment.newInstance();
+                mLastPage = lPage;
+                return lPage;
             }
             return PlaceholderFragment.newInstance(position);
         }
 
         @Override
         public int getCount() {
-            Log.i(getClass().getName(), "getCount: " + appCollection.getAppCategories().size());
+//            Log.i(getClass().getName(), "getCount: " + appCollection.getAppCategories().size());
             return appCollection.getAppCategories().size()+countOffset;
         }
 
