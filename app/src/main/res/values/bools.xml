@@ -2,7 +2,7 @@
 <resources>
 
     <bool name="video_page">
-        true
+        false
     </bool>
 
 </resources>

@@ -11,6 +11,8 @@
     Launcher English 06 PIN Words 1.4.8
     Launcher English 07 PUR Sentences 1.4.8
     Launcher English 08 BLU Stories 1.4.8
+    Launcher English 10 THEMES 1.4.8
+    Launcher English Numeracy 1.6.3
 
     Launcher ALL Logic and Numeracy
     Launhcer 00 Logic
@@ -20,10 +22,12 @@
     Launcher 04 Multiplication and Division
     Launcher 05 Mix-math and Concepts
 
-    Launcher ENG, NUM, ADD, SUB 1.6.0
+    Launcher ENG, NUM, ADD, SUB 1.6.0   /// HOTSPOT ??
+
+    Launcher Literacy and Numeracy 1.6.4 // HOTSPOT
     -->
     <string name="app_name">
-        Launcher English ALL Literacy 1.6.1
+        Launcher Literacy and Numeracy 1.6.4
     </string>
 
     <string name="video_name"> <!-- video file name in raw folder -->
