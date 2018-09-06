@@ -28,79 +28,42 @@ public class AppCollectionGenerator {
         appCategoryLogic.setName("Logic");
         List<AppGroup> appGroupsLogic = new ArrayList<>();
 
+
         appGroupsLogic.add(loadAppGroup("Group 1",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw"
+                "com.alphabetking.logic.find_colors",
+                "com.thealphabetking.kidsedu.find_shape",
+                "com.alphabetking.logic.find_shadows",
+                "com.alphabetking.logic.find_section",
+                "com.alphabetking.logic.pairs_font_and_back",
+                "no.leaplearning.logic.mirror_pattern"
         ));
         appGroupsLogic.add(loadAppGroup("Group 2",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw"
-        ));
-        appGroupsLogic.add(loadAppGroup("Group 22222"
+                "com.alphabetking.logic.pattern",
+                "com.alphabetking.logic.whatshapefits",
+                "com.alphabetking.logic.find_pairs",
+                "com.alphabetking.logic.match_pairs",
+                "com.alphabetking.logic.missingpart",
+                "com.alphabetking.logic.find_shape_mix"
         ));
         appGroupsLogic.add(loadAppGroup("Group 3",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw"
+                "com.alphabetking.logic.match_3_mix",
+                "com.alphabetking.logic.sequence",
+                "com.alphabetking.logic.matrix",
+                "com.alphabetking.logic.match_belong",
+                "com.alphabetking.logic.whatfits",
+                "com.alphabetking.logic.find_3d_shapes"                             //MISSING for 7"
         ));
         appGroupsLogic.add(loadAppGroup("Group 4",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw",
-                "com.alphabetking.literacy.find_letter.sw"
+                "com.alphabetking.logic.puzzle_image",
+                "com.alphabetking.logic.find_opposite",
+                "com.alphabetking.logic.match_opposite",
+                "com.alphabetking.logic.find_senses",
+                "com.alphabetking.literacy.sort_it_out",
+                "com.alphabetking.logic.time"
         ));
         appGroupsLogic.add(loadAppGroup("Group 5",
-                "com.alphabetking.literacy.find_letter.sw"
+                "com.alphabetking.logic.sequence_programming"
         ));
-
-//        appGroupsLogic.add(loadAppGroup("Group 1",
-//                "com.alphabetking.logic.find_colors",
-//                "com.thealphabetking.kidsedu.find_shape",
-//                "com.alphabetking.logic.find_shadows",
-//                "com.alphabetking.logic.find_section",
-//                "com.alphabetking.logic.pairs_font_and_back",
-//                "no.leaplearning.logic.mirror_pattern"
-//        ));
-//        appGroupsLogic.add(loadAppGroup("Group 2",
-//                "com.alphabetking.logic.pattern",
-//                "com.alphabetking.logic.whatshapefits",
-//                "com.alphabetking.logic.find_pairs",
-//                "com.alphabetking.logic.match_pairs",
-//                "com.alphabetking.logic.missingpart",
-//                "com.alphabetking.logic.find_shape_mix"
-//        ));
-//        appGroupsLogic.add(loadAppGroup("Group 3",
-//                "com.alphabetking.logic.match_3_mix",
-//                "com.alphabetking.logic.sequence",
-//                "com.alphabetking.logic.matrix",
-//                "com.alphabetking.logic.match_belong",
-//                "com.alphabetking.logic.whatfits",
-//                "com.alphabetking.logic.find_3d_shapes"                             //MISSING for 7"
-//        ));
-//        appGroupsLogic.add(loadAppGroup("Group 4",
-//                "com.alphabetking.logic.puzzle_image",
-//                "com.alphabetking.logic.find_opposite",
-//                "com.alphabetking.logic.match_opposite",
-//                "com.alphabetking.logic.find_senses",
-//                "com.alphabetking.literacy.sort_it_out",
-//                "com.alphabetking.logic.time"
-//        ));
-//        appGroupsLogic.add(loadAppGroup("Group 5",
-//                "com.alphabetking.logic.sequence_programming"
-//        ));
         appCategoryLogic.setAppGroups(appGroupsLogic);
         appCategories.add(appCategoryLogic);
 
