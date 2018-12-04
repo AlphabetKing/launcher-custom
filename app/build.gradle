@@ -33,12 +33,12 @@ android {
 
         //applicationId "ai.elimu.launcher_custom"          // NORSK Literacy ALL
 
-        applicationId "ai.elimu.launcher_custom_10_themes"      // 10. THEMES
+        applicationId "ai.elimu.launcher"                   // ENG & all NUM
 
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1006041
-        versionName "1.6.4"
+        versionCode 1006060
+        versionName "1.6.6"
     }
 
     flavorDimensions "language"
